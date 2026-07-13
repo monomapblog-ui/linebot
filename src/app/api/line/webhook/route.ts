@@ -25,7 +25,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid signature" }, { status: 401 });
   }
 
-  const body = JSON.parse(rawBody) as LineWebhookBody;
+  let body: LineWebhookBody;
+  try {
+    body = JSON.parse(rawBody) as LineWebhookBody;
+  } catch {
+    return NextResponse.json({ error: "invalid json" }, { status: 400 });
+  }
+
+  if (!Array.isArray(body.events)) {
+    return NextResponse.json({ error: "invalid payload" }, { status: 400 });
+  }
 
   const mockMode = process.env.LINE_MOCK_MODE === "true";
 

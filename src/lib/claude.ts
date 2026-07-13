@@ -5,7 +5,7 @@ const client = new Anthropic();
 
 const MODEL = "claude-opus-4-8";
 
-function buildSystemPrompt(): string {
+export function buildSystemPrompt(): string {
   const coursesText = shopConfig.courses
     .map(
       (c) =>
