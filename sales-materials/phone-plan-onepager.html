@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>YOIN DESK 電話受け代行プラン 営業資料</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    width: 210mm; height: 297mm;
+    background: #0b0e14;
+    color: #ede8dd;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .sheet { width: 210mm; height: 297mm; padding: 14mm 18mm; display: flex; flex-direction: column; }
+  .mono { font-family: ui-monospace, "SF Mono", "Cascadia Code", monospace; }
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  .header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 6mm; border-bottom: 1px solid #262e42; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: 0.02em; }
+  .logo .mark { color: #c9a24b; }
+  .header-tag { font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: 0.14em; color: #8b93a6; text-transform: uppercase; }
+
+  .hero { padding: 6mm 0 5mm; }
+  .eyebrow { font-family: ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.16em; color: #c9a24b; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+  .eyebrow::before { content: ""; width: 16px; height: 1px; background: #8a7038; }
+  .hero h1 { font-size: 23px; font-weight: 800; margin: 3mm 0 2mm; line-height: 1.35; }
+  .hero p { font-size: 12px; color: #8b93a6; line-height: 1.6; max-width: 150mm; }
+
+  .problem-row { display: flex; gap: 5mm; margin-top: 3mm; }
+  .problem-chip { flex: 1; background: #141926; border: 1px solid #262e42; border-radius: 4px; padding: 3mm 4mm; font-size: 11px; color: #8b93a6; line-height: 1.5; }
+  .problem-chip b { display: block; color: #ede8dd; font-size: 12px; margin-bottom: 1mm; }
+
+  .section-title { display: flex; align-items: baseline; gap: 3mm; margin-top: 5mm; margin-bottom: 2.5mm; }
+  .section-title h2 { font-size: 15px; font-weight: 800; }
+  .section-title .eyebrow { margin: 0; }
+
+  .plan-box { background: #1b2233; border: 1px solid #8a7038; border-radius: 6px; padding: 4mm 6mm; }
+  .plan-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3mm; }
+  .plan-badge { font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #7c93b3; background: rgba(124,147,179,0.14); border: 1px solid rgba(124,147,179,0.4); padding: 1.5mm 3mm; border-radius: 999px; }
+  .plan-name { font-size: 16px; font-weight: 800; }
+  .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2mm 8mm; margin-top: 3mm; }
+  .feature-item { display: flex; gap: 2.5mm; font-size: 11px; color: #8b93a6; line-height: 1.5; }
+  .feature-item::before { content: "—"; color: #8a7038; flex-shrink: 0; }
+
+  .price-table { width: 100%; border-collapse: collapse; margin-top: 4mm; font-size: 11.5px; }
+  .price-table th, .price-table td { padding: 2.5mm 4mm; text-align: left; border-bottom: 1px solid #262e42; }
+  .price-table thead th { font-family: ui-monospace, monospace; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #8b93a6; }
+  .price-table tbody th { font-weight: 700; width: 30%; }
+  .price-table .amount { font-family: ui-monospace, monospace; font-weight: 700; color: #e0c383; font-size: 15px; }
+  .price-table tr:last-child td, .price-table tr:last-child th { border-bottom: none; }
+
+  .flow-row { display: flex; gap: 4mm; margin-top: 4mm; }
+  .flow-step { flex: 1; background: #141926; border: 1px solid #262e42; border-radius: 4px; padding: 3mm 4mm; }
+  .flow-step .n { font-family: ui-monospace, monospace; font-size: 11px; color: #c9a24b; margin-bottom: 1.5mm; }
+  .flow-step .t { font-size: 11.5px; font-weight: 700; margin-bottom: 1mm; }
+  .flow-step .d { font-size: 10px; color: #8b93a6; line-height: 1.4; }
+
+  .footer { margin-top: auto; padding-top: 5mm; border-top: 1px solid #262e42; display: flex; align-items: center; justify-content: space-between; }
+  .footer .contact { font-size: 11px; color: #8b93a6; }
+  .footer .contact b { color: #ede8dd; }
+  .cta { background: linear-gradient(180deg, #e0c383, #c9a24b); color: #1a1406; font-weight: 700; font-size: 12px; padding: 4mm 8mm; border-radius: 3px; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <div class="header">
+      <div class="logo"><span class="mark">YOIN</span> DESK</div>
+      <div class="header-tag">メンズエステ専門 受付代行サービス</div>
+    </div>
+
+    <div class="hero">
+      <span class="eyebrow">電話受け代行プラン — ご提案資料</span>
+      <h1>その電話、専門オペレーターが<br>あなたの店の"顔"として応対します。</h1>
+      <p>施術中の対応漏れ、深夜の機会損失。既存の電話番号のまま、業界特有の言い回しに精通した有人オペレーターが24時間365日対応します。工事不要、最短5営業日で導入可能です。</p>
+
+      <div class="problem-row">
+        <div class="problem-chip"><b>施術中の取りこぼし</b>手が離せない数分で他店へ流れるお客様がいます。</div>
+        <div class="problem-chip"><b>深夜早朝の機会損失</b>営業時間外の着信は記録にも残りません。</div>
+        <div class="problem-chip"><b>採用・人件費の負担</b>1人体制ほど急な欠員が営業リスクになります。</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="eyebrow">Solution</span>
+      <h2>電話受け代行プランの特徴</h2>
+    </div>
+    <div class="plan-box">
+      <div class="plan-top">
+        <span class="plan-name">電話受け代行プラン</span>
+        <span class="plan-badge">TEL</span>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">専門知識を持つ有人オペレーターが対応</div>
+        <div class="feature-item">24時間365日フル対応、または深夜帯のみの選択制</div>
+        <div class="feature-item">既存の電話番号のまま切り替え、工事不要</div>
+        <div class="feature-item">対応内容は記録のうえ、店舗へ引き継ぎ</div>
+        <div class="feature-item">コース・料金案内から予約枠の取次ぎまで対応</div>
+        <div class="feature-item">予約管理システム（Caskan等）とは併用可能</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="eyebrow">Pricing</span>
+      <h2>料金プラン</h2>
+    </div>
+    <table class="price-table">
+      <thead><tr><th></th><th>内容</th><th>月額</th></tr></thead>
+      <tbody>
+        <tr><th>ライトプラン</th><td>月100件まで／22時〜翌8時の時間帯対応</td><td class="amount tabular">¥37,000〜</td></tr>
+        <tr><th>スタンダードプラン</th><td>月300件まで／24時間365日フル対応・月次レポート</td><td class="amount tabular">¥67,000〜</td></tr>
+        <tr><th>複数店舗・カスタム</th><td>グループ経営・LINE自動受付プランとの併用</td><td class="amount">個別お見積もり</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">
+      <span class="eyebrow">Flow</span>
+      <h2>導入までの流れ</h2>
+    </div>
+    <div class="flow-row">
+      <div class="flow-step"><div class="n tabular">01</div><div class="t">無料相談</div><div class="d">現状のお悩みをヒアリング</div></div>
+      <div class="flow-step"><div class="n tabular">02</div><div class="t">お見積もり</div><div class="d">コール数・営業時間を確認</div></div>
+      <div class="flow-step"><div class="n tabular">03</div><div class="t">トークすり合わせ</div><div class="d">メニュー・NG事項を確認</div></div>
+      <div class="flow-step"><div class="n tabular">04</div><div class="t">導入・運用開始</div><div class="d">最短5営業日でスタート</div></div>
+    </div>
+
+    <div class="footer">
+      <div class="contact">運営: <b>合同会社グラステ</b>　ご相談・お見積もりは無料です</div>
+      <div class="cta">無料相談・お見積もり →</div>
+    </div>
+
+  </div>
+</body>
+</html>
