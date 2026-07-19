@@ -365,6 +365,20 @@
   .plan-features li { display: flex; gap: 10px; font-size: 13.5px; color: var(--text-muted); }
   .plan-features li::before { content: "—"; color: var(--gold-dim); flex-shrink: 0; }
 
+  .plan-card-soon { opacity: 0.72; }
+  .plan-card-soon:hover { opacity: 0.92; }
+  .plan-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .plan-top-row .plan-badge { margin-bottom: 0; }
+  .coming-soon-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    border: 1px solid var(--surface-line);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
   /* ---------- Comparison ---------- */
   .compare-table-wrap { overflow-x: auto; border: 1px solid var(--surface-line); border-radius: var(--radius-m); }
   table.compare { width: 100%; border-collapse: collapse; min-width: 560px; font-size: 14px; }
