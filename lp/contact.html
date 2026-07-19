@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無料相談・お見積もり ｜ YOIN DESK</title>
+<meta name="description" content="メンズエステ専門の24時間受付代行サービス「YOIN DESK」の無料相談・お見積もりはこちらから。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="container site-nav">
+    <a href="index.html" class="logo"><span class="mark">YOIN</span> DESK</a>
+    <nav class="nav-links">
+      <a href="index.html#problem">課題</a>
+      <a href="index.html#solution">サービス</a>
+      <a href="index.html#pricing">料金</a>
+      <a href="index.html#flow">導入の流れ</a>
+      <a href="index.html#faq">よくある質問</a>
+    </nav>
+    <a href="contact.html" class="btn btn-gold header-cta">無料相談・お見積もり</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero doc-hero">
+    <div class="container">
+      <div class="breadcrumb" style="padding-top:0"><a href="index.html">トップ</a><span>/</span><span>お問い合わせ</span></div>
+      <span class="eyebrow" style="margin-top:20px">Contact</span>
+      <h1>無料相談・お見積もり</h1>
+      <p class="lede" style="margin-top:16px">1分ほどで送信できます。しつこい営業は一切いたしません。</p>
+    </div>
+  </section>
+
+  <section class="doc-body">
+    <div class="container">
+      <div class="form-shell">
+
+        <aside class="form-aside">
+          <h2>ご相談の流れ</h2>
+          <p>フォーム送信後、担当者が内容を確認し、原則として翌営業日中にご連絡します。</p>
+          <div class="form-aside-list">
+            <div class="form-aside-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a24b" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+              <div><p class="t">相談・お見積もりは無料</p><p class="d">ご契約前の費用は一切かかりません。</p></div>
+            </div>
+            <div class="form-aside-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a24b" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div><p class="t">個人情報は厳重に管理</p><p class="d"><a href="privacy.html" style="color:var(--trust)">プライバシーポリシー</a>に基づき適切に取り扱います。</p></div>
+            </div>
+            <div class="form-aside-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a24b" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <div><p class="t">原則翌営業日中にご連絡</p><p class="d">内容を確認のうえ、担当者よりご連絡いたします。</p></div>
+            </div>
+          </div>
+        </aside>
+
+        <form class="contact-form" id="contact-form" novalidate>
+
+          <div class="field">
+            <label class="field-label" for="shop-name">店舗名<span class="field-req">必須</span></label>
+            <input type="text" id="shop-name" name="shop-name" required minlength="1" maxlength="100" autocomplete="organization" placeholder="例：〇〇メンズエステ 新宿店">
+            <p class="field-error">店舗名を入力してください。</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="contact-name">お名前<span class="field-req">必須</span></label>
+            <input type="text" id="contact-name" name="contact-name" required minlength="1" maxlength="60" autocomplete="name" placeholder="例：山田 太郎">
+            <p class="field-error">お名前を入力してください。</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="email">メールアドレス<span class="field-req">必須</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="example@yourshop.jp">
+            <p class="field-error">正しいメールアドレスを入力してください。</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="phone">電話番号<span class="field-opt">任意</span></label>
+            <input type="tel" id="phone" name="phone" pattern="^[0-9\-+()（） ]{9,15}$" autocomplete="tel" placeholder="例：090-1234-5678">
+            <p class="field-hint">お急ぎの場合、お電話でも折り返しいたします。</p>
+            <p class="field-error">正しい電話番号の形式で入力してください。</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="stores">店舗数<span class="field-opt">任意</span></label>
+            <select id="stores" name="stores" autocomplete="off">
+              <option value="">選択してください</option>
+              <option value="1">1店舗</option>
+              <option value="2-3">2〜3店舗</option>
+              <option value="4+">4店舗以上</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="message">ご相談内容<span class="field-opt">任意</span></label>
+            <textarea id="message" name="message" maxlength="1000" placeholder="現在の電話対応の状況や、気になっている課題などをお聞かせください。"></textarea>
+          </div>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="agree" name="agree" required>
+            <span><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意のうえ送信します<span class="field-req" style="margin-left:6px">必須</span></span>
+          </label>
+
+          <button type="submit" class="btn btn-gold btn-block">この内容で送信する →</button>
+          <p class="form-submit-note">送信後、担当者より原則翌営業日中にご連絡いたします。</p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="container footer-grid">
+    <a href="index.html" class="logo"><span class="mark">YOIN</span> DESK</a>
+    <nav class="footer-links">
+      <a href="company.html">運営会社情報</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="container footer-meta">
+    © 2026 YOIN DESK. 運営: 合同会社グラステ
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var form = document.getElementById('contact-form');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        var firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // TODO: 実運用時はここで実際の送信先APIへPOSTする
+      // fetch('/api/contact', { method: 'POST', body: new FormData(form) })
+      window.location.href = 'thanks.html';
+    });
+  })();
+</script>
+
+</body>
+</html>
