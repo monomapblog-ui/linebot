@@ -1,0 +1,8 @@
+{
+  "name": "yoin-desk",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "resend": "^6.16.0"
+  }
+}

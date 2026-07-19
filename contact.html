@@ -103,7 +103,8 @@
             <span><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意のうえ送信します<span class="field-req" style="margin-left:6px">必須</span></span>
           </label>
 
-          <button type="submit" class="btn btn-gold btn-block">この内容で送信する →</button>
+          <p id="submit-error" class="field-error" style="display:none"></p>
+          <button type="submit" id="submit-btn" class="btn btn-gold btn-block">この内容で送信する →</button>
           <p class="form-submit-note">送信後、担当者より原則翌営業日中にご連絡いたします。</p>
         </form>
 
@@ -130,8 +131,12 @@
 <script>
   (function () {
     var form = document.getElementById('contact-form');
+    var submitBtn = document.getElementById('submit-btn');
+    var errorEl = document.getElementById('submit-error');
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      errorEl.style.display = 'none';
 
       if (!form.checkValidity()) {
         form.reportValidity();
@@ -140,9 +145,30 @@
         return;
       }
 
-      // TODO: 実運用時はここで実際の送信先APIへPOSTする
-      // fetch('/api/contact', { method: 'POST', body: new FormData(form) })
-      window.location.href = 'thanks.html';
+      var data = Object.fromEntries(new FormData(form).entries());
+      data.agree = form.elements['agree'].checked;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中...';
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then(function (res) {
+          return res.json().then(function (body) { return { ok: res.ok, body: body }; });
+        })
+        .then(function (result) {
+          if (!result.ok) throw new Error(result.body.error || '送信に失敗しました');
+          window.location.href = 'thanks.html';
+        })
+        .catch(function (err) {
+          errorEl.textContent = err.message || 'エラーが発生しました。しばらく後でお試しください。';
+          errorEl.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'この内容で送信する →';
+        });
     });
   })();
 </script>
