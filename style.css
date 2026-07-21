@@ -453,6 +453,42 @@
   .price-list li::before { content: "—"; color: var(--gold-dim); flex-shrink: 0; }
   .price-note { text-align: center; margin-top: 40px; color: var(--text-faint); font-size: 13px; }
 
+  .launch-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    background: rgba(201,162,75,0.08);
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius-m);
+    padding: 20px 26px;
+    margin-bottom: 40px;
+  }
+  .launch-banner-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: #1a1406;
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    padding: 6px 14px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .launch-banner p { color: var(--text-muted); font-size: 13.5px; margin: 0; }
+
+  .guarantee-box {
+    max-width: 640px;
+    margin: 40px auto 0;
+    text-align: center;
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-line);
+    border-radius: var(--radius-m);
+    padding: 28px 32px;
+  }
+  .guarantee-box h4 { font-size: 15.5px; color: var(--gold-soft); margin-bottom: 8px; }
+  .guarantee-box p { color: var(--text-muted); font-size: 13.5px; margin: 0; }
+
   /* ---------- Process ---------- */
   .steps { display: grid; gap: 0; border: 1px solid var(--surface-line); border-radius: var(--radius-m); overflow: hidden; }
   @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); } }
