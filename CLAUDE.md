@@ -11,7 +11,9 @@
 
 ## 現在の状態（すべてリポジトリルート直下）
 
-**静的サイト**（Vercelにゼロコンフィグでデプロイ済み、プロジェクト名 `yoin-desk`）
+**本番URL: `https://linebot-iota-ashy.vercel.app`**（Vercelプロジェクト名 `linebot`）
+
+**静的サイト**（Vercelにゼロコンフィグでデプロイ済み）
 - `index.html` … トップページ（LP）。**電話受け代行プランを先頭に据えた構成に変更済み**（LINE自動受付プランは「近日公開」バッジ付きで併記、現時点では売らない）。電話受け代行プランは成功報酬型（成約1件¥990〜）、LINE自動受付プランは月額固定制（詳細は下記「料金」参照）
   - Trust セクション（`#trust`）追加: 「代表自らが電話対応を行います」「メンズエステ専門プラットフォーム運営者が開発」の2枚のカード。誇張・実績のねつ造をせず、事実ベースの信頼要素のみ掲載（詳細は下記「LPの信頼要素について」参照）
   - Pricing セクションに「提供開始記念価格（先着5社様限定）」バナーと「契約後30日間はいつでも解約可能」の保証ボックスを追加
@@ -69,7 +71,11 @@
 
 ## Vercelデプロイ設定について（2026年7月、解決済み）
 
-`yoin-desk.vercel.app` にアクセスしても古い別プロトタイプ（Next.js製のLINEボットデモ、ブランチ`claude/japanese-conversation-b5f68u`）が表示される問題が発生していた。原因は、このリポジトリのGitHubデフォルトブランチが`main`ではなく`claude/japanese-conversation-b5f68u`になっていたこと。本人がGitHub側でデフォルトブランチを`main`に変更し、Vercel側の`yoin-desk`プロジェクトのProduction Branchも`main`に設定済み。今後同じ混乱が起きないよう、この経緯を記録しておく。
+`yoin-desk.vercel.app` にアクセスしても古い別プロトタイプ（Next.js製のLINEボットデモ、ブランチ`claude/japanese-conversation-b5f68u`）が表示される問題が発生していた。
+
+- 第一の原因: このリポジトリのGitHubデフォルトブランチが`main`ではなく`claude/japanese-conversation-b5f68u`になっていた。本人がGitHub側でデフォルトブランチを`main`に変更済み
+- 真の原因（こちらが本体）: Vercelプロジェクトの「Framework Preset」が、当初のNext.jsプロトタイプ作成時のまま`Next.js`に固定されていた。`main`は素のHTML/CSS+Serverless Functions構成でNext.jsではないため、`next build`を試みて毎回ビルドが失敗（"No Next.js version detected"エラー）していた
+- 対応: 新規importした`linebot`プロジェクト（本番URL `https://linebot-iota-ashy.vercel.app`）でSettings → Build and DeploymentのFramework Presetを`Other`に変更 → Redeployで解決・Ready確認済み。**以後はこの`linebot`プロジェクトを正とする**（元の`yoin-desk`プロジェクトは同じ原因で未修正のまま放置でよいと本人合意済み、混乱防止のため将来的に削除してもよい）
 
 ## 現在の優先方針（2026年7月時点、本人の指示）
 
