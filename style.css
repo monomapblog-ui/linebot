@@ -453,6 +453,15 @@
   .price-list li::before { content: "—"; color: var(--gold-dim); flex-shrink: 0; }
   .price-note { text-align: center; margin-top: 40px; color: var(--text-faint); font-size: 13px; }
 
+  .sim-table-wrap { max-width: 640px; margin: 32px auto 0; }
+  .sim-title { text-align: center; font-size: 15px; color: var(--text); margin-bottom: 16px; }
+  table.sim-table { width: 100%; border-collapse: collapse; border: 1px solid var(--surface-line); border-radius: var(--radius-m); overflow: hidden; font-size: 14px; }
+  table.sim-table th, table.sim-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--surface-line); }
+  table.sim-table thead th { color: var(--text-muted); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--font-mono); background: var(--surface-raised); }
+  table.sim-table td.amt { color: var(--gold-soft); font-weight: 600; text-align: right; font-family: var(--font-mono); }
+  table.sim-table tr:last-child td, table.sim-table tr:last-child th { border-bottom: none; }
+  .sim-note { text-align: center; margin-top: 16px; color: var(--text-faint); font-size: 12.5px; }
+
   .launch-banner {
     display: flex;
     flex-wrap: wrap;
