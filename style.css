@@ -462,6 +462,13 @@
   table.sim-table tr:last-child td, table.sim-table tr:last-child th { border-bottom: none; }
   .sim-note { text-align: center; margin-top: 16px; color: var(--text-faint); font-size: 12.5px; }
 
+  .addon-table-wrap { max-width: 640px; margin: 0 auto; }
+  table.addon-table { width: 100%; border-collapse: collapse; border: 1px solid var(--surface-line); border-radius: var(--radius-m); overflow: hidden; font-size: 14px; }
+  table.addon-table th, table.addon-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--surface-line); }
+  table.addon-table thead th { color: var(--text-muted); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--font-mono); background: var(--surface-raised); }
+  table.addon-table td.amt { color: var(--gold-soft); font-weight: 600; text-align: right; font-family: var(--font-mono); font-size: 13px; }
+  table.addon-table tr:last-child td, table.addon-table tr:last-child th { border-bottom: none; }
+
   .launch-banner {
     display: flex;
     flex-wrap: wrap;
