@@ -93,6 +93,13 @@
 - 真の原因（こちらが本体）: Vercelプロジェクトの「Framework Preset」が、当初のNext.jsプロトタイプ作成時のまま`Next.js`に固定されていた。`main`は素のHTML/CSS+Serverless Functions構成でNext.jsではないため、`next build`を試みて毎回ビルドが失敗（"No Next.js version detected"エラー）していた
 - 対応: 新規importした`linebot`プロジェクト（本番URL `https://linebot-iota-ashy.vercel.app`）でSettings → Build and DeploymentのFramework Presetを`Other`に変更 → Redeployで解決・Ready確認済み。**以後はこの`linebot`プロジェクトを正とする**（元の`yoin-desk`プロジェクトは同じ原因で未修正のまま放置でよいと本人合意済み、混乱防止のため将来的に削除してもよい）
 
+## LP軽量化・アクセス解析（2026年7月）
+
+営業の反応が薄いことから「LPが長すぎるのでは」という懸念が本人から出た。実データはまだ無いが（アクセス解析未導入だったため）、以下を実施:
+- Pricingセクション内、まだ販売していない「LINE自動受付プラン」のカードを、フルサイズ2枚（ライト/スタンダード）から1行の説明文＋ボタンに圧縮し、スクロール量を削減
+- 全ページ（`index.html`/`company.html`/`privacy.html`/`terms.html`/`contact.html`/`thanks.html`）に Vercel Analytics のスクリプトタグ（`<script defer src="/_vercel/insights/script.js"></script>`）を追加済み
+- **要本人対応**: Vercelダッシュボード → `linebot`プロジェクト → 「Analytics」タブで Web Analytics を有効化しないと計測が始まらない。有効化後、数日分データが貯まってから離脱状況を確認する想定
+
 ## 公式LINE（YOIN DESK自身の営業ツール、2026年7月設定）
 
 「LINE自動受付プラン」（各店舗に導入する製品機能、上記の通り保留中）とは別に、**YOIN DESK自身の公式LINEアカウントを既存店への営業ツールとして運用開始**。
