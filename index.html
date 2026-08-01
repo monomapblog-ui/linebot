@@ -26,6 +26,15 @@
   </div>
 </header>
 
+<div class="quicknav">
+  <div class="quicknav-inner">
+    <a href="#pricing">料金を見る</a>
+    <a href="#solution">プランを選ぶ</a>
+    <a href="#faq">よくある質問</a>
+    <a href="contact.html" class="is-cta">無料相談</a>
+  </div>
+</div>
+
 <main id="top">
 
   <!-- ================= HERO ================= -->
@@ -34,7 +43,7 @@
       <div>
         <span class="eyebrow">24H / 365日対応 — メンズエステ専門受付代行</span>
         <h1>その電話、専門オペレーターが<br><em>24時間</em>あなたの店の窓口として応対します。</h1>
-        <p class="lede">施術中の対応漏れ、深夜の機会損失。有人対応の「電話受け代行」で、店の"顔"をYOIN DESKが代わりに務めます。（LINE自動受付プランは近日公開予定）</p>
+        <p class="lede"><strong>施術中の対応漏れ、深夜の機会損失。</strong>有人対応の「電話受け代行」で、店の"顔"をYOIN DESKが代わりに務めます。</p>
         <div class="hero-actions">
           <a href="contact.html" class="btn btn-gold">まずは無料相談・お見積もり →</a>
           <a href="#solution" class="btn btn-ghost">サービス内容を見る</a>
@@ -46,9 +55,10 @@
         </div>
       </div>
 
+      <div class="console-wrap">
       <div class="console" aria-hidden="true">
         <div class="console-bar">
-          <div class="status"><span class="rec-dot"></span>受電対応中 · LIVE</div>
+          <div class="status"><span class="rec-dot"></span>対応イメージ</div>
           <div class="console-clock" id="console-clock">02:47:13</div>
         </div>
         <div class="console-log" id="console-log">
@@ -78,6 +88,8 @@
           <span>本日の対応件数</span>
           <span><b class="tabular">47</b>件</span>
         </div>
+      </div>
+      <p class="console-caption">※実際の対応画面をイメージしたデモ表示です</p>
       </div>
     </div>
   </section>
@@ -122,7 +134,7 @@
       <div class="section-head">
         <span class="eyebrow">Solution</span>
         <h2>2つの受付代行プラン</h2>
-        <p>予約管理システム（Caskan等）を置き換えるものではなく、その手前の一次対応を引き受けます。店舗の状況に合わせて、どちらか一方、または両方を組み合わせて導入いただけます。</p>
+        <p><strong>予約管理システムの手前の一次対応</strong>だけをお任せください。単独でも、組み合わせでも導入可能です。</p>
       </div>
       <div class="plan-pair">
         <div class="plan-card">
@@ -255,29 +267,33 @@
         <div class="price-card highlight" style="max-width:640px;margin:0 auto">
           <span class="price-tag">成功報酬型</span>
           <h3>ご来店・施術完了分だけ、お支払い</h3>
-          <p class="desc">初期費用・月額固定費はいただきません。お電話対応をしても、実際のご来店・施術完了に至らなかった場合（予約のみ・キャンセル・不成立など）、費用は発生しません。</p>
+          <p class="desc">完全成功報酬型で、<strong>リスクなく</strong>お試しいただけます。</p>
           <div class="price-num"><span class="amount tabular">¥990</span><span class="unit">/ 成約1件（税込）</span></div>
+          <div class="price-risk-badge">✓ <strong>ご来店・施術完了のみ</strong>が対象／予約止まり・キャンセルは<strong>¥0</strong></div>
           <ul class="price-list">
             <li>初期費用 ¥0・月額固定費 ¥0</li>
-            <li>「成約」＝実際のご来店・施術完了をもってカウント</li>
             <li>24時間365日 または 22時〜翌8時のみ など、対応時間帯を選択可能</li>
             <li>導入サポート込み</li>
           </ul>
           <a href="contact.html" class="btn btn-gold btn-block">このプランで相談する</a>
         </div>
 
-        <div class="sim-table-wrap" id="simulation">
-          <h4 class="sim-title">導入シミュレーション（目安）</h4>
-          <table class="sim-table">
-            <thead><tr><th>想定成約数</th><th>月額目安</th></tr></thead>
-            <tbody>
-              <tr><td>1日10件</td><td class="amt tabular">¥297,000</td></tr>
-              <tr><td>1日30件</td><td class="amt tabular">¥891,000</td></tr>
-              <tr><td>1日50件</td><td class="amt tabular">¥1,485,000</td></tr>
-            </tbody>
-          </table>
-          <p class="sim-note">※ 1件¥990として30日換算した目安です。実際は成約（ご来店・施術完了）した分だけのご請求のため、予約止まり・キャンセルがあれば目安より安くなります。</p>
-        </div>
+        <details class="accordion-block">
+          <summary>導入シミュレーションを見る<span class="sub">想定成約数別の月額目安</span></summary>
+          <div class="accordion-body">
+            <div class="sim-table-wrap" id="simulation">
+              <table class="sim-table">
+                <thead><tr><th>想定成約数</th><th>月額目安</th></tr></thead>
+                <tbody>
+                  <tr><td>1日10件</td><td class="amt tabular">¥297,000</td></tr>
+                  <tr><td>1日30件</td><td class="amt tabular">¥891,000</td></tr>
+                  <tr><td>1日50件</td><td class="amt tabular">¥1,485,000</td></tr>
+                </tbody>
+              </table>
+              <p class="sim-note">※ 1件¥990として30日換算した目安です。成約（ご来店・施術完了）した分だけのご請求のため、予約止まり・キャンセルがあれば目安より安くなります。</p>
+            </div>
+          </div>
+        </details>
       </div>
 
       <div class="pricing-group">
@@ -290,20 +306,24 @@
 
       <div class="pricing-group">
         <h3 class="pricing-group-title"><span class="plan-badge plan-badge-tel">+</span>経営サポートオプション</h3>
-        <p class="desc" style="max-width:640px;margin:0 auto 24px;text-align:center">電話受け代行プランと組み合わせられる、店舗運営の事務代行オプションです。単独でのご利用も可能です。</p>
-        <div class="addon-table-wrap">
-          <table class="addon-table">
-            <thead><tr><th>項目</th><th>料金（月額）</th></tr></thead>
-            <tbody>
-              <tr><td>基本料金</td><td class="amt tabular">¥18,000（電話受け代行プランご利用中の店舗様は無料）</td></tr>
-              <tr><td>女子給精算代行</td><td class="amt tabular">¥18,000〜</td></tr>
-              <tr><td>シフト作成・管理</td><td class="amt tabular">¥13,000〜</td></tr>
-              <tr><td>SNS更新代行</td><td class="amt tabular">¥18,000〜</td></tr>
-              <tr><td>広告更新代行</td><td class="amt tabular">¥22,000〜</td></tr>
-            </tbody>
-          </table>
-          <p class="sim-note">※ 必要な項目のみの組み合わせも可能です。詳しくはお問い合わせください。</p>
-        </div>
+        <details class="accordion-block">
+          <summary>経営サポートの料金を見る<span class="sub">女子給精算・シフト管理・SNS/広告更新</span></summary>
+          <div class="accordion-body">
+            <div class="addon-table-wrap">
+              <table class="addon-table">
+                <thead><tr><th>項目</th><th>料金（月額）</th></tr></thead>
+                <tbody>
+                  <tr><td>基本料金</td><td class="amt tabular">¥18,000（電話受け代行プランご利用中の店舗様は無料）</td></tr>
+                  <tr><td>女子給精算代行</td><td class="amt tabular">¥18,000〜</td></tr>
+                  <tr><td>シフト作成・管理</td><td class="amt tabular">¥13,000〜</td></tr>
+                  <tr><td>SNS更新代行</td><td class="amt tabular">¥18,000〜</td></tr>
+                  <tr><td>広告更新代行</td><td class="amt tabular">¥22,000〜</td></tr>
+                </tbody>
+              </table>
+              <p class="sim-note">※ 必要な項目のみの組み合わせも可能です。詳しくはお問い合わせください。</p>
+            </div>
+          </div>
+        </details>
       </div>
 
       <div class="price-card" style="max-width:640px;margin:40px auto 0">

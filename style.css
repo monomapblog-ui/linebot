@@ -73,6 +73,37 @@
 
   .tabular { font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
 
+  p strong, li strong, .desc strong { color: var(--text); font-weight: 700; }
+
+  /* ---------- Mobile quick-nav ---------- */
+  .quicknav {
+    position: sticky;
+    top: 72px;
+    z-index: 39;
+    background: rgba(11, 14, 20, 0.95);
+    border-bottom: 1px solid var(--surface-line);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .quicknav::-webkit-scrollbar { display: none; }
+  @media (min-width: 900px) { .quicknav { display: none; } }
+  .quicknav-inner { display: flex; gap: 8px; padding: 10px 16px; white-space: nowrap; }
+  .quicknav-inner a {
+    flex-shrink: 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 7px 14px;
+    border: 1px solid var(--surface-line);
+    border-radius: 999px;
+    background: var(--surface);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .quicknav-inner a:hover, .quicknav-inner a:active { color: var(--gold-soft); border-color: var(--gold-dim); }
+  .quicknav-inner a.is-cta { color: #1a1406; background: linear-gradient(180deg, var(--gold-soft), var(--gold)); border-color: transparent; font-weight: 700; }
+
   /* ---------- Header ---------- */
   header.site {
     position: sticky;
@@ -237,15 +268,16 @@
   }
   .rec-dot {
     width: 8px; height: 8px; border-radius: 50%;
-    background: var(--danger);
-    box-shadow: 0 0 0 0 rgba(184,101,79,0.6);
+    background: var(--gold);
+    box-shadow: 0 0 0 0 rgba(201,162,75,0.6);
     animation: pulse 2s infinite;
   }
   @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(184,101,79,0.55); }
-    70% { box-shadow: 0 0 0 8px rgba(184,101,79,0); }
-    100% { box-shadow: 0 0 0 0 rgba(184,101,79,0); }
+    0% { box-shadow: 0 0 0 0 rgba(201,162,75,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(201,162,75,0); }
+    100% { box-shadow: 0 0 0 0 rgba(201,162,75,0); }
   }
+  .console-caption { margin-top: 10px; font-size: 11px; color: var(--text-faint); text-align: right; }
   .console-clock {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -448,6 +480,18 @@
   .price-num { display: flex; align-items: baseline; gap: 6px; margin-bottom: 24px; }
   .price-num .amount { font-family: var(--font-mono); font-size: 34px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
   .price-num .unit { color: var(--text-muted); font-size: 13px; }
+  .price-risk-badge {
+    display: block;
+    background: rgba(201,162,75,0.1);
+    border: 1px solid var(--gold-dim);
+    border-radius: 14px;
+    padding: 10px 16px;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--text);
+    margin: -12px 0 24px;
+  }
+  .price-risk-badge strong { color: var(--gold-soft); font-weight: 700; }
   .price-list { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-direction: column; gap: 11px; flex: 1; }
   .price-list li { display: flex; gap: 10px; font-size: 13.5px; color: var(--text-muted); }
   .price-list li::before { content: "—"; color: var(--gold-dim); flex-shrink: 0; }
@@ -461,6 +505,41 @@
   table.sim-table td.amt { color: var(--gold-soft); font-weight: 600; text-align: right; font-family: var(--font-mono); }
   table.sim-table tr:last-child td, table.sim-table tr:last-child th { border-bottom: none; }
   .sim-note { text-align: center; margin-top: 16px; color: var(--text-faint); font-size: 12.5px; }
+
+  /* ---------- Accordion (pricing detail blocks) ---------- */
+  details.accordion-block {
+    background: var(--surface);
+    border: 1px solid var(--surface-line);
+    border-radius: var(--radius-m);
+    max-width: 640px;
+    margin: 24px auto 0;
+    overflow: hidden;
+  }
+  details.accordion-block summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  details.accordion-block summary::-webkit-details-marker { display: none; }
+  details.accordion-block summary::after {
+    content: "+";
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  details.accordion-block[open] summary::after { transform: rotate(45deg); }
+  details.accordion-block summary .sub { display: block; font-weight: 400; font-size: 12px; color: var(--text-faint); margin-top: 3px; }
+  details.accordion-block .accordion-body { padding: 0 22px 22px; }
+  details.accordion-block .accordion-body > *:first-child { margin-top: 0 !important; }
 
   .addon-table-wrap { max-width: 640px; margin: 0 auto; }
   table.addon-table { width: 100%; border-collapse: collapse; border: 1px solid var(--surface-line); border-radius: var(--radius-m); overflow: hidden; font-size: 14px; }
