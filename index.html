@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scroll-progress-bar"></div></div>
+
 <header class="site">
   <div class="container site-nav">
     <a href="#top" class="logo"><span class="mark">YOIN</span> DESK</a>
@@ -257,6 +259,12 @@
         <p>2つのプランは単独でも、組み合わせてもご利用いただけます。業界相場から算出した、意欲的な価格設定です。</p>
       </div>
 
+      <div class="price-glance">
+        <div class="price-glance-item">初期費用 <b>¥0</b></div>
+        <div class="price-glance-item">月額固定費 <b>¥0</b></div>
+        <div class="price-glance-item">成約1件 <b>¥990</b>〜</div>
+      </div>
+
       <div class="launch-banner">
         <span class="launch-banner-label">提供開始記念価格</span>
         <p>YOIN DESKはサービス提供を開始したばかりです。上記の価格は、先着5社様限定でのご案内価格となります。</p>
@@ -482,6 +490,48 @@
           log.removeChild(log.firstChild);
         }
       }, 4000);
+    }
+
+    // Scroll progress bar
+    var progressBar = document.getElementById('scroll-progress-bar');
+    function updateProgress() {
+      var doc = document.documentElement;
+      var scrollable = doc.scrollHeight - doc.clientHeight;
+      var pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      if (progressBar) progressBar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    // Scrollspy: highlight the current section in the desktop nav + mobile quicknav
+    var navLinks = document.querySelectorAll('.nav-links a[href^="#"], .quicknav-inner a[href^="#"]');
+    var trackedIds = ['problem', 'solution', 'pricing', 'flow', 'faq'];
+    var sections = trackedIds
+      .map(function (id) { return document.getElementById(id); })
+      .filter(Boolean);
+
+    function setActive(id) {
+      navLinks.forEach(function (link) {
+        var match = link.getAttribute('href') === '#' + id;
+        link.classList.toggle('is-active', match);
+      });
+    }
+
+    if ('IntersectionObserver' in window && sections.length) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      sections.forEach(function (section) { observer.observe(section); });
+    }
+
+    // Desktop: open the pricing accordions by default (mobile keeps them collapsed to save scroll)
+    if (window.innerWidth >= 900) {
+      document.querySelectorAll('details.accordion-block').forEach(function (el) {
+        el.setAttribute('open', '');
+      });
     }
   })();
 </script>
