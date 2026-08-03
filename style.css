@@ -248,6 +248,13 @@
     position: relative;
     padding: 72px 0 88px;
     background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(201,162,75,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 20%, rgba(124,147,179,0.08), transparent 60%);
+  }
+  /* Only the top-page hero (which also carries .section-light) gets the white base;
+     the plain doc-page headers (company/privacy/terms/contact) stay on the dark theme. */
+  .hero.section-light {
+    background:
       radial-gradient(ellipse 900px 500px at 15% -10%, rgba(201,162,75,0.14), transparent 60%),
       radial-gradient(ellipse 700px 500px at 100% 20%, rgba(124,147,179,0.10), transparent 60%),
       var(--bg-light);
