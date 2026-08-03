@@ -721,8 +721,8 @@
   .cta-final {
     text-align: center;
     background:
-      radial-gradient(ellipse 700px 400px at 50% 0%, rgba(201,162,75,0.14), transparent 65%),
-      var(--surface);
+      radial-gradient(ellipse 700px 400px at 50% 0%, rgba(201,162,75,0.16), transparent 65%),
+      var(--bg-light);
   }
   .cta-final h2 { font-size: clamp(24px, 4vw, 34px); margin-bottom: 16px; }
   .cta-final .lede { color: var(--text-muted); max-width: 46ch; margin: 0 auto 36px; font-size: 15px; }
