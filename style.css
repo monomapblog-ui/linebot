@@ -826,6 +826,23 @@
     color: var(--text-muted);
   }
 
+  /* ================= Blog ================= */
+  .blog-list { display: grid; gap: 20px; max-width: 720px; }
+  .blog-card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--surface-line);
+    border-radius: var(--radius-m);
+    padding: 28px 26px;
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+  .blog-card:hover { border-color: var(--gold-text-dim); }
+  .blog-card-date { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); letter-spacing: 0.04em; }
+  .blog-card h2 { font-size: 18px; color: var(--text); margin: 10px 0 10px; }
+  .blog-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; }
+  .blog-card-more { font-size: 13px; color: var(--gold-text-soft); font-weight: 600; }
+
   /* ================= Contact form ================= */
   .form-shell {
     display: grid;
