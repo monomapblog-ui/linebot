@@ -91,8 +91,32 @@
 
 **バックエンド（Vercel Serverless Functions）**
 - `api/contact.js` … お問い合わせフォームの送信先。Resend経由でメール通知。**動作確認済み**（本人が実際に送信・受信を確認）
-- `api/line-webhook.js` … LINE自動受付プランの本体。LINE Messaging APIのWebhookを受け、Claude（Haiku）で店舗のFAQ設定（`lib/salon-config.js`）に基づいて自動応答。署名検証・エラー時のgraceful fallbackをローカルで検証済み。**実際のLINE公式アカウントとの接続はまだ未実施**（LINEチャネルシークレット・アクセストークン・ANTHROPIC_API_KEYが必要）
-- `lib/salon-config.js` … デモ店舗1店舗分のFAQ情報をハードコード。複数店舗展開時はチャネルIDごとに設定を切り替える設計に拡張が必要
+- `api/line-webhook.js` … LINE自動受付プランの本体。LINE Messaging APIのWebhookを受け、Claude（Haiku）で店舗のFAQ設定（`lib/salon-config.js`）に基づいて自動応答。**2026年9月8日、「AIが予約内容を整形→人間が最終確定」の半自動フローを実装済み**（詳細は下記「LINE自動受付プラン：予約整形・引き継ぎの実装」参照）。署名検証・Anthropic API失敗時のgraceful fallback・Redis未設定時のno-opフォールバックはローカルのモックテストで検証済み。**実際のLINE公式アカウントとの接続、および実際のClaude API呼び出しはまだ未実施**（LINEチャネルシークレット・アクセストークン・ANTHROPIC_API_KEYが必要。このサンドボックス環境は`api.anthropic.com`・`api.line.me`ともネットワーク許可リスト外のため、たとえキーがあってもこのセッションからは実APIへの疎通確認ができない）
+- `lib/salon-config.js` … デモ店舗1店舗分のFAQ情報をハードコード。複数店舗展開時はチャネルIDごとに設定を切り替える設計に拡張が必要。`reservationHandoff.notifyEmail`（予約引き継ぎ通知の送信先）を追加
+- `lib/conversation-store.js` … LINEユーザーごとの会話履歴をUpstash Redis（Vercel Marketplaceの「Redis」インテグレーション）に保存するモジュール。未設定でも動作は壊れず、履歴なしのステートレス応答にフォールバックする
+
+## LINE自動受付プラン：予約整形・引き継ぎの実装（2026年9月8日）
+
+上記「LINE自動受付プランのアーキテクチャ方針」で決めた「AIが予約内容の整形・引き継ぎまでを担い、最終確定は人間が行う」を`api/line-webhook.js`に実装した。
+
+**実装内容**:
+- Claudeのtool use機能で`submit_reservation_request`ツールを定義。コース・希望日時の両方がお客様とのやり取りから確認できたら、AIがこのツールを呼び出す設計（呼び出し＝予約確定ではなく、あくまで人間への引き継ぎトリガー）
+- system promptに**「予約が確定した」という趣旨の表現を絶対に使わないこと**を明記し、必ず「担当より確認のうえ、追ってご連絡します」という趣旨で返信するよう指示（テストで実際にこの制約が守られることを確認済み、下記参照）
+- ツール呼び出しが発生したら、Resend経由で担当者（`salonConfig.reservationHandoff.notifyEmail`、既定は`support@yoin.jp`、`RESERVATION_NOTIFY_EMAIL`環境変数で上書き可）へ、コース・希望日時・特記事項・LINEユーザーIDを記載したメールを送信。メール本文にも「最終確定は担当者が行ってください」と明記
+- 1回のLINEメッセージだけでコース・日時が揃わないケースに対応するため、`lib/conversation-store.js`でユーザーごとの直近12ターンの会話履歴をUpstash Redisに30分TTLで保存し、次のメッセージ受信時にその履歴も含めてClaudeに渡す。引き継ぎが完了したら履歴をクリアする
+- Redis未設定時は履歴なし（＝改修前と同じ単発応答）に自動フォールバックするため、Upstash側の設定が未完了でもデプロイ自体は壊れない
+
+**ローカルモックテストで確認済み**（`/home/user/linebot`環境、Anthropic/Resend SDKをモック化して検証。このセッションからは実APIへの疎通ができないため、あくまでロジックの正しさの検証）:
+- 署名検証（正しい署名→200、不正な署名→401）
+- Anthropic API呼び出し失敗時に、LINEへフォールバックメッセージを送ろうとして（実際には失敗するが）例外を握りつぶし、webhook全体としては200を返す
+- ツール呼び出しが発生した際、実際に引き継ぎメールへコース・希望日時・LINEユーザーIDが正しく渡ること、メール本文に「最終確定は担当者」の注記が含まれること
+- ツール呼び出し発生時のLINE返信文言に「確定」「承りました」等の確定を意味する語が含まれないこと
+
+**未実施・要本人対応**:
+- Upstash Redis（Vercel Marketplace経由）のセットアップと、`UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`（または`KV_REST_API_URL` / `KV_REST_API_TOKEN`）のVercel環境変数設定。未設定でも動くが、複数メッセージにまたがる予約希望の聞き取りができない
+- `RESERVATION_NOTIFY_EMAIL`環境変数の設定（未設定時は`support@yoin.jp`宛のまま）
+- 上記「残っている作業」記載の通り、LINE公式アカウントとの実接続・`ANTHROPIC_API_KEY`設定はまだ
+- `npm install`で`package.json`に`@upstash/redis`を追加済み（旧`@vercel/kv`は2025年に非推奨化されているため使用していない。`npm install`時にその旨の警告が出ることに注意されたいが、これは意図的にavoidした結果であり問題ない）
 
 ## 料金
 
@@ -208,7 +232,7 @@
 4. **LINE公式アカウントとの実接続**: LINE Developersでチャネル作成 → `LINE_CHANNEL_SECRET` / `LINE_CHANNEL_ACCESS_TOKEN` をVercelに設定 → Webhook URL（`https://<デプロイURL>/api/line-webhook`）を登録
 5. **`ANTHROPIC_API_KEY`をVercelに設定**（LINEボットの応答生成に必要）
 6. **複数店舗対応の設計**: 現状`lib/salon-config.js`は1店舗分のみ。実際に複数店舗へ展開する際は、LINEチャネルIDごとに設定を出し分ける仕組みが必要
-7. **予約整形・引き継ぎロジックの実装**（2026年9月8日方針確定、未着手）: 「LINE自動受付プランのアーキテクチャ方針」の通り、AIが予約内容を構造化して人間へ引き継ぐ半自動フローに`api/line-webhook.js`を拡張する。具体的には (a) LINE会話から予約に必要な項目（コース・希望日時・お客様名等）を抽出する応答ロジック、(b) 抽出結果を店舗スタッフ/自社オペレーターへ通知する引き継ぎ経路（LINE通知・メール・専用ダッシュボード等、方式は未確定）の2点を設計・実装する必要がある
+7. ~~予約整形・引き継ぎロジックの実装~~ → **2026年9月8日、実装済み**（詳細は上記「LINE自動受付プラン：予約整形・引き継ぎの実装」参照）。残るのはUpstash Redis・`RESERVATION_NOTIFY_EMAIL`のセットアップと、上記4・5の実接続作業
 
 ### 共通
 7. 定款変更（本人が任意のタイミングで実施、上記参照）
