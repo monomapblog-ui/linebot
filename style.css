@@ -378,7 +378,14 @@ body { padding-bottom: 76px; }
 .quicknav { position: sticky; top: 0; z-index: 19; background: var(--white); border-bottom: 1px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .quicknav::-webkit-scrollbar { display: none; }
 @media (min-width: 980px) { .quicknav { display: none; } }
-.quicknav-inner { display: flex; gap: 8px; padding: 10px 16px; white-space: nowrap; }
+.quicknav-wrap { position: relative; }
+.quicknav-wrap::after {
+  content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 28px;
+  background: linear-gradient(90deg, transparent, var(--white));
+  pointer-events: none;
+}
+@media (min-width: 980px) { .quicknav-wrap::after { display: none; } }
+.quicknav-inner { display: flex; gap: 8px; padding: 10px 24px 10px 16px; white-space: nowrap; }
 .quicknav-inner a { flex-shrink: 0; font-size: 12.5px; font-weight: 700; color: var(--muted); text-decoration: none; padding: 7px 14px; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--surface); }
 .quicknav-inner a.is-cta { color: var(--ink); background: var(--gold); border-color: transparent; }
 .quicknav-inner a.is-active:not(.is-cta) { color: var(--blue); border-color: var(--blue); background: var(--blue-tint); }
@@ -490,9 +497,19 @@ table.doc-table tr:last-child th, table.doc-table tr:last-child td { border-bott
   .container, section, .hero, .about-hero, .about-cta, .doc-hero, .doc-body { padding-left: 20px; padding-right: 20px; }
   section { padding-top: 56px; padding-bottom: 56px; }
 
-  .hero { padding: 24px 20px 40px; }
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { order: -1; max-width: 280px; }
+  .hero { padding: 20px 20px 32px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+  .hero-visual { max-width: 220px; margin: 4px auto 0; }
+  .hero-badge { font-size: 11px; padding: 6px 14px; }
+  .hero h1 { margin-top: 14px; }
+  .hero .lede { margin-top: 16px; font-size: 15px; }
+  .fact-badges { margin-top: 20px; gap: 8px; }
+  .fact-badge { font-size: 12px; padding: 9px 16px; }
+  .hero-actions { margin-top: 24px; gap: 12px; }
+  .hero-actions .btn-gold, .hero-actions .btn-outline { width: 100%; }
+  .hero-note { width: 100%; }
+  .notice-bar { margin-top: 24px; padding: 12px 18px; gap: 10px 14px; }
+  .notice-bar .notice-text { font-size: 12.5px; }
 
   .service-grid { grid-template-columns: 1fr; }
   .price-summary-grid { grid-template-columns: 1fr; }
