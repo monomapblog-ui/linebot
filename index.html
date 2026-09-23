@@ -178,30 +178,35 @@
         </div>
       </div>
 
-      <div class="launch-note">
-        <span class="launch-note-badge">提供開始記念価格</span>
-        <p>工事・初期設定も月額固定費もかからず、予約止まり・キャンセル・不成立は0円です。YOIN DESKはサービス提供を開始したばかりです。上記の価格は<strong>先着5社様限定</strong>のご案内価格となります。</p>
-      </div>
-
-      <h3 class="sim-heading">成約数から、月額の目安を確認する</h3>
-      <div class="sim-table-wrap" id="simulation">
-        <div class="sim-table-head"><div>想定成約数</div><div>月額目安</div></div>
-        <div class="sim-table-row"><div class="sim-count">1日10件</div><div class="sim-amt">¥297,000</div></div>
-        <div class="sim-table-row"><div class="sim-count">1日30件</div><div class="sim-amt">¥891,000</div></div>
-        <div class="sim-table-row"><div class="sim-count">1日50件</div><div class="sim-amt">¥1,485,000</div></div>
-      </div>
-      <p class="sim-note">※ 1件¥990として30日換算した目安です。成約（ご来店・施術完了）した分だけのご請求のため、予約止まり・キャンセルがあれば目安より安くなります。</p>
-
-      <div class="guarantee-grid">
-        <div class="guarantee-card">
-          <div class="guarantee-head">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4FD6" stroke-width="1.6"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
-            <h3>合わなければ、30日以内に違約金なしで解約できます</h3>
+      <details class="accordion-block" id="price-details">
+        <summary><span>料金の詳細を見る<span class="sub">提供開始記念価格・成約数別シミュレーション・30日間の解約保証</span></span></summary>
+        <div class="accordion-body">
+          <div class="launch-note">
+            <span class="launch-note-badge">提供開始記念価格</span>
+            <p>工事・初期設定も月額固定費もかからず、予約止まり・キャンセル・不成立は0円です。YOIN DESKはサービス提供を開始したばかりです。上記の価格は<strong>先着5社様限定</strong>のご案内価格となります。</p>
           </div>
-          <p>実際に使ってからご判断いただくための条件です。契約開始から30日間は、違約金なしで解約いただけます。</p>
+
+          <h3 class="sim-heading">成約数から、月額の目安を確認する</h3>
+          <div class="sim-table-wrap" id="simulation">
+            <div class="sim-table-head"><div>想定成約数</div><div>月額目安</div></div>
+            <div class="sim-table-row"><div class="sim-count">1日10件</div><div class="sim-amt">¥297,000</div></div>
+            <div class="sim-table-row"><div class="sim-count">1日30件</div><div class="sim-amt">¥891,000</div></div>
+            <div class="sim-table-row"><div class="sim-count">1日50件</div><div class="sim-amt">¥1,485,000</div></div>
+          </div>
+          <p class="sim-note">※ 1件¥990として30日換算した目安です。成約（ご来店・施術完了）した分だけのご請求のため、予約止まり・キャンセルがあれば目安より安くなります。</p>
+
+          <div class="guarantee-grid">
+            <div class="guarantee-card">
+              <div class="guarantee-head">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4FD6" stroke-width="1.6"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                <h3>合わなければ、30日以内に違約金なしで解約できます</h3>
+              </div>
+              <p>実際に使ってからご判断いただくための条件です。契約開始から30日間は、違約金なしで解約いただけます。</p>
+            </div>
+            <p class="price-footnote">※ 掲載の金額は業界の公表相場をもとに算出しています。複数店舗運営や特殊な対応が必要な場合は、個別にご相談ください。</p>
+          </div>
         </div>
-        <p class="price-footnote">※ 掲載の金額は業界の公表相場をもとに算出しています。複数店舗運営や特殊な対応が必要な場合は、個別にご相談ください。</p>
-      </div>
+      </details>
     </div>
   </section>
 
@@ -452,6 +457,13 @@
     window.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', updateProgress);
     updateProgress();
+
+    // Auto-expand price details when linked directly (e.g. LINE rich menu → #simulation)
+    if (location.hash) {
+      var hashTarget = document.querySelector(location.hash);
+      var detailsAncestor = hashTarget && hashTarget.closest('details.accordion-block');
+      if (detailsAncestor) detailsAncestor.open = true;
+    }
 
     // Scrollspy
     var navLinks = document.querySelectorAll('.nav-links a[href^="#"], .quicknav-inner a[href^="#"]');
