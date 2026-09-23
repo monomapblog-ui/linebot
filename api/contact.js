@@ -6,7 +6,10 @@ function getResend() {
   return resend;
 }
 
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "support@yoin.jp";
+// 送信元はResendで検証済みのドメインを使う必要があるため固定。
+// 宛先（実際に通知が届く先）だけを差し替える。
+const FROM_EMAIL = process.env.FROM_EMAIL || "support@yoin.jp";
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "yufami601@gmail.com";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[0-9\-+()（） ]{9,15}$/;
 
@@ -49,7 +52,7 @@ module.exports = async (req, res) => {
 
   try {
     const { error } = await getResend().emails.send({
-      from: `YOIN DESK お問い合わせ <${NOTIFY_EMAIL}>`,
+      from: `YOIN DESK お問い合わせ <${FROM_EMAIL}>`,
       to: NOTIFY_EMAIL,
       replyTo: email,
       subject: `【YOIN DESK】無料相談: ${shopName}`,

@@ -112,7 +112,7 @@
 今後もLPに実績・経歴を追加する場合は、事実に基づくもの以外は掲載しないこと。
 
 **バックエンド（Vercel Serverless Functions）**
-- `api/contact.js` … お問い合わせフォームの送信先。Resend経由でメール通知。**動作確認済み**（本人が実際に送信・受信を確認）
+- `api/contact.js` … お問い合わせフォームの送信先。Resend経由でメール通知。**動作確認済み**（本人が実際に送信・受信を確認）。**2026年9月23日、通知先を`yufami601@gmail.com`に変更**（`NOTIFY_EMAIL`環境変数で上書き可、未設定時のデフォルト）。送信元（`from`）はResend側で検証済みのドメインが必要なため`support@yoin.jp`のまま固定（`FROM_EMAIL`環境変数で上書き可）。**注意**: Vercel側に`NOTIFY_EMAIL`環境変数が既に設定されている場合はそちらが優先されるため、このコード変更だけでは反映されない可能性がある。本人に環境変数の設定状況を確認してもらうこと
 - `api/line-webhook.js` … LINE自動受付プランの本体。LINE Messaging APIのWebhookを受け、Claude（Haiku）で店舗のFAQ設定（`lib/salon-config.js`）に基づいて自動応答。**2026年9月8日、「AIが予約内容を整形→人間が最終確定」の半自動フローを実装済み**（詳細は下記「LINE自動受付プラン：予約整形・引き継ぎの実装」参照）。署名検証・Anthropic API失敗時のgraceful fallback・Redis未設定時のno-opフォールバックはローカルのモックテストで検証済み。**実際のLINE公式アカウントとの接続、および実際のClaude API呼び出しはまだ未実施**（LINEチャネルシークレット・アクセストークン・ANTHROPIC_API_KEYが必要。このサンドボックス環境は`api.anthropic.com`・`api.line.me`ともネットワーク許可リスト外のため、たとえキーがあってもこのセッションからは実APIへの疎通確認ができない）
 - `lib/salon-config.js` … デモ店舗1店舗分のFAQ情報をハードコード。複数店舗展開時はチャネルIDごとに設定を切り替える設計に拡張が必要。`reservationHandoff.notifyEmail`（予約引き継ぎ通知の送信先）を追加
 - `lib/conversation-store.js` … LINEユーザーごとの会話履歴をUpstash Redis（Vercel Marketplaceの「Redis」インテグレーション）に保存するモジュール。未設定でも動作は壊れず、履歴なしのステートレス応答にフォールバックする
