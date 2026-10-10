@@ -202,6 +202,6 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then((buf) => {
-  fs.writeFileSync('yoin-desk-onboarding-checklist.docx', buf);
+  fs.writeFileSync('YOIN_DESK_導入オンボーディングチェックリスト.docx', buf);
   console.log('written');
 });
